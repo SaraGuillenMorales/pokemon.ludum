@@ -10,8 +10,4 @@
 import PokemonLudum from './modulorum/pokemon/paginae/PokemonLudum.vue';
 
 
-PokemonLudum
-
-
-
 </script>
