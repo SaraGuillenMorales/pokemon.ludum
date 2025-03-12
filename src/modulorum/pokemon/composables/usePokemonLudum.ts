@@ -2,16 +2,18 @@ import { computed, onMounted, ref } from "vue"
 import { LudumStatus, type Pokemon, type PokemonListaResponsio } from "../interfaces"
 import { pokemonApi } from "@/api/pokemonApi";
 
-import {}
 
 export const usePokemonLudum = () => {
 
     const ludumStatus = ref<LudumStatus>( LudumStatus.Ludit );
     const pokemons = ref<Pokemon[]>([]);
-
     const pokemonOptiones = ref<Pokemon[]>([]);
 
     const estPortat = computed(() => pokemons.value.length === 0);
+    const temerePokemon = computed(() => {
+        const temereIndex = Math.floor( Math.random() * pokemonOptiones.value.length );
+        return pokemonOptiones.value[temereIndex];
+    });
 
 
     const obtinePokemons = async(): Promise<Pokemon[]> => {
@@ -37,7 +39,7 @@ export const usePokemonLudum = () => {
 
         pokemonOptiones.value = pokemons.value.slice(0, quot);
 
-        pokemons.value = pokemons.value.slice(quot)
+        pokemons.value = pokemons.value.slice(quot);
 
     }
 
@@ -45,6 +47,8 @@ export const usePokemonLudum = () => {
         await new Promise ((r) => setTimeout(r, 500));
         pokemons.value = await obtinePokemons();
         sequentiOptiones();
+
+        console.log(pokemonOptiones.value);
     });
 
 
@@ -53,5 +57,6 @@ export const usePokemonLudum = () => {
         estPortat,
         pokemonOptiones,
         sequentiOptiones,
+        temerePokemon,
     }
 }
