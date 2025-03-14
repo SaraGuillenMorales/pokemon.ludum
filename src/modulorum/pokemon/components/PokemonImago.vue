@@ -3,7 +3,7 @@
     <section>
 
         <img 
-        v-if=!revelarePokemon"
+        v-if="!revelarePokemon"
         :src="PokemonImago"
         alt=""
         class="brightness-0 h-[200px]"
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
     revelarePokemon: false,
 });
 
-const props = defineProps<Props>();
+
 const PokemonImago = computed(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`)
 
 </script>
