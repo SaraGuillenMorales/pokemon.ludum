@@ -1,7 +1,5 @@
 <template>
-
     <section>
-
         <img 
         v-if="!revelarePokemon"
         :src="PokemonImago"
@@ -17,7 +15,6 @@
         >
 
     </section>
-
 </template>
 
 <script setup lang="ts">
@@ -34,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 
-const PokemonImago = computed(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`)
+const PokemonImago = computed(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${ props.pokemonId }.svg`)
 
 </script>
 

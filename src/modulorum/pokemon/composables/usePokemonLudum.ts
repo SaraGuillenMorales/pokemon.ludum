@@ -1,5 +1,5 @@
-import { computed, onMounted, ref } from "vue"
-import { LudumStatus, type Pokemon, type PokemonListaResponsio } from "../interfaces"
+import { computed, onMounted, ref } from "vue";
+import { LudumStatus, type Pokemon, type PokemonListaResponsio } from "../interfaces";
 import { pokemonApi } from "@/api/pokemonApi";
 import confetti from "canvas-confetti";
 
@@ -11,6 +11,7 @@ export const usePokemonLudum = () => {
     const pokemonOptiones = ref<Pokemon[]>([]);
 
     const estPortat = computed(() => pokemons.value.length === 0);
+
     const temerePokemon = computed(() => {
         const temereIndex = Math.floor( Math.random() * pokemonOptiones.value.length );
         return pokemonOptiones.value[temereIndex];
@@ -18,18 +19,17 @@ export const usePokemonLudum = () => {
 
 
     const obtinePokemons = async(): Promise<Pokemon[]> => {
-
         const responsio = await pokemonApi.get<PokemonListaResponsio>('/?limit=151');
-        const pokemonArray: Pokemon[] = responsio.data.results.map((pokemon) => {
 
+        const pokemonArray: Pokemon[] = responsio.data.results.map((pokemon) => {
             const urlPartes = pokemon.url.split('/');
+
             const id = urlPartes[urlPartes.length - 2] ?? 0;
 
             return {
                 nomen: pokemon.name,
-                id: +id
-            }
-
+                id: +id,
+            };
         });
 
         return pokemonArray.sort(() => Math.random() - 0.5 );
@@ -53,7 +53,7 @@ export const usePokemonLudum = () => {
             confetti({
                 particleCount: 300,
                 spread: 150,
-                origin: { y: 0.6}
+                origin: { y: 0.6 }
             });
 
             return; 
