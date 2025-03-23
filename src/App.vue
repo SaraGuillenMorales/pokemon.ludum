@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import PokemonLudum from './modulorum/pokemon/paginae/PokemonLudum.vue';
 
+import PokemonLudum from './modulorum/pokemon/paginae/PokemonLudum.vue';
 
 </script>
